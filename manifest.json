@@ -9,13 +9,16 @@
   },
   
    "permissions": [
-    "tabs"
+    "tabs",
+    "https://*.avaaz.org/*",
+    "<all_urls>",
+    "webRequest"
   ],
 
   "content_scripts": [
     {
       "matches": ["https://secure.avaaz.org/*"],
-      "js": ["jquery.js", "avaaz.js"]
+      "js": ["lib/jquery.js", "content_scripts/avaaz.js"]
     }
   ],
 
