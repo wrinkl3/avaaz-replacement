@@ -9,10 +9,10 @@
   },
   
    "permissions": [
+    "activeTab",
     "tabs",
-    "https://*.avaaz.org/*",
-    "<all_urls>",
-    "webRequest"
+    "webRequest",
+    "https://*.avaaz.org/*"
   ],
 
   "content_scripts": [
@@ -27,7 +27,7 @@
     "default_icon": {
     "16": "icons/page-16.png"
   	},
-    "default_popup": "fill_form.html"
+    "default_popup": "popup/fill_form.html"
   }
 
 }
