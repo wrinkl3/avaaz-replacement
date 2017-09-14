@@ -9,10 +9,16 @@ function sign_petition(request, sender, sendResponse) {
         secure_validation: Date(),
         used_js: Date()
     };
+    /*
+    Parameters for the JSON-type signing.
+    */
     var dataType = 'json';
     var url = 'https://secure.avaaz.org/act/frontend_api/legacy/sign_all.php';
     var contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
     var processData = true;
+    /*
+    Check if the page uses the form-data signing scheme and, if so, adjust the parameters accordingly.
+    */
     if (document.getElementById('biogems-petition-form')){
         var formData = new FormData();
         for ( var key in data) {
@@ -43,6 +49,9 @@ function sign_petition(request, sender, sendResponse) {
     browser.runtime.onMessage.removeListener(sign_petition);
 }
 
+/*
+Extract the campaign id from the page's HTML.
+*/
 function getCID(){
     var markup = document.documentElement.innerHTML;
     var i = markup.indexOf('cid');
