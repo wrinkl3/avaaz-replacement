@@ -8,13 +8,28 @@ function sign_petition(request, sender, sendResponse) {
         supports_history_api: true,
         secure_validation: Date(),
         used_js: Date()
+    };
+    var dataType = 'json';
+    var url = 'https://secure.avaaz.org/act/frontend_api/legacy/sign_all.php';
+    var contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
+    var processData = true;
+    if (document.getElementById('biogems-petition-form')){
+        var formData = new FormData();
+        for ( var key in data) {
+            formData.append(key, data[key]);
+        }
+        url = document.getElementById('biogems-petition-form').action;
+        data = formData;
+        contentType = false;
+        processData = false;
     }
-
     jQuery.ajax({
-        dataType:'json',
+        dataType:dataType,
         type: 'post',
         data: data,
-        url: 'https://secure.avaaz.org/act/frontend_api/legacy/sign_all.php',
+        url: url,
+        contentType: contentType,
+        processData: processData,
         success:function(json) {
             if (json.error_message) {
                 alert(json.error_message);
@@ -25,7 +40,7 @@ function sign_petition(request, sender, sendResponse) {
             }
         }
     });
-  browser.runtime.onMessage.removeListener(sign_petition);
+    browser.runtime.onMessage.removeListener(sign_petition);
 }
 
 function getCID(){
