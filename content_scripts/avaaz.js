@@ -59,6 +59,9 @@ function sign_petition(request, sender, sendResponse) {
                 if (json.redirect_url) {
                     window.location.href = json.redirect_url;
                 }
+                else if (json.action){
+                    window.location.href = json.action;
+                }
             }
         }
     });
